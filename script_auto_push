@@ -1,7 +1,0 @@
-#!/bin/bash
-cd /home/venus/Git_repo
-'/home/venus/Git_repo/Wordcloud_actu_france.py' 
-git add .
-git commit -m "mots du jour"
-git push
-
