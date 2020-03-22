@@ -254,8 +254,8 @@ wordcloud = WordCloud(max_font_size=40).generate(a)
 import matplotlib.pyplot as plt
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
-#plt.figure()
-plt.show()
+##plt.figure()
+#plt.show()
 
 
 # In[18]:
