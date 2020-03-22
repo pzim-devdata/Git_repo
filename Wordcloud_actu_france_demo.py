@@ -122,15 +122,15 @@ tweet_avec_mots_bannnis = [[mots for mots in mots_tweet if mots  not in a_retire
 a=""
 for mots in tweet_avec_mots_bannnis:
   a=a+" ".join(mots)
-#On classifie en fonction de leurs importance les mots de tweet_sans_sw.txt avec Wordcloud
+#On classifie en fonction de leurs importance les mots de tweet_avec_mots_bannnis.txt avec Wordcloud
 wordcloud = WordCloud(max_font_size=40).generate(a)
 
 #Deuxieme maniere on crée un fichier txt :
 #on importe les mots de tweet_sans_sw dans le txt
-#f = open("tweet_sans_sw.txt", "w")
-#for mots in tweet_sans_sw:
+#f = open("tweet_avec_mots_bannnis.txt", "w")
+#for mots in tweet_avec_mots_bannnis:
 #    f.write("\n".join(mots))
-#wordcloud = WordCloud(max_font_size=40).generate(open(path.join(d, 'tweet_sans_sw.txt')).read())
+#wordcloud = WordCloud(max_font_size=40).generate(open(path.join(d, 'tweet_avec_mots_bannnis.txt')).read())
 #-----------------------------------------
 
 # On affiche l'image Wordcloud :
@@ -169,7 +169,7 @@ wordcloud.to_file('/home/venus/Git_repo/mots_du_jour.png')
 
 #results = api.user_timeline(id=name, count=tweetCount, lang="fr")
 
-# foreach through all tweets pulled
+# Affichage des résultats
 #for tweet in results:
    # printing the text stored inside the tweet object
 #   print(tweet.text)
