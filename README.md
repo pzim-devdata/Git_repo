@@ -13,7 +13,7 @@
 
 ## - [Licence](LICENSE)
 MIT License
-Copyright (c) 2012 pzim-devdata
+Copyright (c) 2020 pzim-devdata
 
 --------------------------------------------
 
