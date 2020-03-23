@@ -141,10 +141,110 @@ plt.axis("off")
 #plt.show()
 
 # Enfin on sauvagarde l'image Wordcloud :
-wordcloud.to_file('/home/venus/Wordcloud twitter/mots_du_jour.png')
 
-wordcloud.to_file('/home/venus/Git_repo/mots_du_jour.png')
+wordcloud.to_file('/home/venus/Git_repo/GIT/mots_du_jour.png')
 
+#------------------------------------------
+#### INFOS MONDIALES
+import tweepy
+
+
+
+result2 = []
+liste = ["@ItaliaNEWS", "@SABreakingNews", "@Cameroon_Com", "@MoNewsNet", "@haaretzcom", "@STcom", "@XHNews", "@TaiwanNews886", "@VietnamNewsVNS", "@cambodge_info", "@notesfrompoland", "@nordstjernan", "@OslOsethu", "@KyivPost", "@TheCRNews", "@malaysiakini", "@theBAtimes", "@TheLocalGermany", "@DPRK_News", "@9NewsAUS", "@AIT_News", "@newsphilippines", "@CBCNews", "@FranceNews24", "@newsspain", "@mexicond", "@MoscowTimes", "@jakpost", "@IndiaToday", "@HDNER", "@AJEnglish", "@BrazilianReport", "@arabnews", "@BBCNews", "@ReutersUK", "@The_Japan_News", "@USATODAY"]
+for ele in liste:
+    result2.append(api.user_timeline(ele, count = 100))
+
+# Affichage des résultats :
+#for i in result:
+#    for tweet in i:
+#        print(tweet.text)
+    
+
+# Concaténation des résultats de recherche :
+result3=result2#+result2
+
+
+#### Nettoyage des données :
+
+import tweepy as tw
+import warnings
+warnings.filterwarnings("ignore")
+
+# On définie une fonction de nettoyage des données (retrait des url et des caractéres spéciaux) :
+
+def remove_url(txt):
+    """Remplace les url trouvée par le caractère vide " "
+    Parametre
+    ----------
+    txt : string
+        la variable string que l'on soutaite remplacer
+    Sortie
+    -------
+    Le fichier nettoyé des url
+    """
+    return " ".join(re.sub('http\w+:\/\/\S+', '', txt).split())
+
+# On retire les caractères spéciaux et les url de result3 :
+
+tweets_sans_urls = [remove_url(tweet.text)  for i in result3 for tweet in i]
+
+# On crée la liste des mots :
+
+mots_dans_tweets = [tweet.lower().split() for tweet in tweets_sans_urls]
+
+
+# Retrait des mots non pertinents avec nltk :
+
+# Téléchargement NLTK
+#nltk.download('stopwords')
+stop_words = set(stopwords.words('english'))
+
+# Retrait des mots non pertinents :
+liste_stop_words = list(stop_words)
+
+tweet_sans_sw = [[mots for mots in mots_tweet if not mots in liste_stop_words]
+                 for mots_tweet in mots_dans_tweets]
+
+
+
+
+a_retirer = ["germany", "brazil", "russia", "yia", "ukraine", "spain", "vietnam", "day", "news", "italia", "china", "italy", "world", "us", "de"]#+ liste_stop_words
+
+# On réutilise une double listes pour retirer les mots non pertinents:
+
+tweet_avec_mots_bannnis = [[mots for mots in mots_tweet if mots  not in a_retirer  ]
+                 for mots_tweet in tweet_sans_sw]
+
+
+#### WordCloud : Création de l'image finale :
+
+#Premiere maniere avec une phrase :
+a=""
+for mots in tweet_avec_mots_bannnis:
+  a=a+" ".join(mots)
+#On classifie en fonction de leurs importance les mots de tweet_avec_mots_bannnis.txt avec Wordcloud
+wordcloud = WordCloud(max_font_size=40).generate(a)
+
+#Deuxieme maniere on crée un fichier txt :
+#on importe les mots de tweet_sans_sw dans le txt
+#f = open("tweet_avec_mots_bannnis.txt", "w")
+#for mots in tweet_avec_mots_bannnis:
+#    f.write("\n".join(mots))
+#wordcloud = WordCloud(max_font_size=40).generate(open(path.join(d, 'tweet_avec_mots_bannnis.txt')).read())
+#-----------------------------------------
+
+# On affiche l'image Wordcloud :
+import matplotlib.pyplot as plt
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+##plt.figure()
+#plt.show()
+
+# Enfin on sauvagarde l'image Wordcloud :
+#wordcloud.to_file('/home/venus/Wordcloud twitter/words_of_the_day.png')
+
+wordcloud.to_file('/home/venus/Git_repo/GIT/words_of_the_day.png')
 
 #### La timeline perso de mon compte :
 
