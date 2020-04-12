@@ -43,10 +43,6 @@ with open("CAC40.txt", "w") as text_file:
 	print(f"Depuis l'an 2000, le cours du CAC40 est tombé à "+str(minimum2000.Low.min())+" points, le "+ minimum2000.Date_string.min() +". \n\nAu cours des 15 dernières années, le cours du CAC40 est tombé à "+str(minimum15ans.Low.min())+" points, le "+ minimum15ans.Date_string.min() +". \n\nAu cours des 10 dernières années, le cours du CAC40 est tombé à "+str(minimum10ans.Low.min())+" points, le "+ minimum10ans.Date_string.min() +". \n\nAu cours des 5 dernières années, le cours du CAC40 est tombé à "+str(minimum5ans.Low.min())+" points, le "+ minimum5ans.Date_string.min() +". \n\nAujourd'hui, le " + aujourdhui.Date_string.min() +", le CAC40 vaut " + str(aujourdhui.iloc[-1,0]) + " points à "+ aujourdhui.Heure_string.max()+". \n\nLe CAC40 a varié de " + str(round(aujourdhui.iloc[-1,0]*100/ minimum5ans.Low.min(),2))+" %, depuis son point le plus bas du " +minimum5ans.Date_string.min()+". \n\nLe CAC40 a varié de "+str(round(100-maximum5ans.High.max()*100/aujourdhui.iloc[-1,0] ,2)) +" % depuis son point le plus haut de ces 5 dernières années du "+maximum5ans.Date_string.max(), file=text_file) 
 	text_file.close()
 
-with open("/home/venus/Git_repo/Site_Web/CAC40.html", "w") as text_file:
-	print("""<!DOCTYPE html><html><head><meta name="description" content="Welcome to the pzim.fr website! Consult the 'words of the day' most used on Twitter in France and around the world."><meta name="keywords" content="Words of the day, words of today, word of the day, words of the day, twitter, Twitter, most common, most common words on Twitter, GitHub pages, pzim.fr, pzim, pzim-devdata, Wordcloud, wordcloud, mot de jour, mots d'aujourd'hui, mot du jour sur twitter, news, actualité, quel est le mot le plus utilisé sur Twitter, mot le plus utilise sur Twitter"><meta http-equiv="refresh" content="600"><meta name="author" content="Pzim"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8" ><link rel="stylesheet" href="style.css"/><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></head><body style="background-color:OldLace;font-size: 2vw;"><section>On the """ + aujourdhui.Date_string.min() +", the value of the CAC40 is " + str(aujourdhui.iloc[-1,0]) + " points at "+ aujourdhui.Heure_string.max()+". <br><br>The CAC40 increased by +" + str(-round(100-aujourdhui.iloc[-1,0]*100/ minimum5ans.Low.min(),2))+"% from its lowest point on " +minimum5ans.Date_string.min()+". <br><br>The CAC40 has varied by "+str(round(100-maximum5ans.High.max()*100/aujourdhui.iloc[-1,0] ,2)) +"% since its highest point in the last 5 years from "+maximum5ans.Date_string.max()+".<br><br>Since the year 2000, the value of the CAC40 has dropped to "+str(minimum2000.Low.min())+" points on "+ minimum2000.Date_string.min() +". <br><br>Over the past 15 years, the value of the CAC40 has fallen to "+str(minimum15ans.Low.min())+" points on "+ minimum15ans.Date_string.min() +". <br><br>Over the past 10 years, the value of the CAC40 has fallen to "+str(minimum10ans.Low.min())+" points on "+ minimum10ans.Date_string.min() +". <br><br>In the past 5 years, the value of the CAC40 has fallen to "+str(minimum5ans.Low.min())+" points on "+ minimum5ans.Date_string.min() +""". </section></body></html>""", file=text_file) 
-	text_file.close()
-
 with open("/home/venus/Git_repo/Site_Web/index.html", "w") as text_file:
 	print("""<!DOCTYPE html>\n
 <html lang="en-US">\n
@@ -115,7 +111,7 @@ with open("/home/venus/Git_repo/Site_Web/index.html", "w") as text_file:
   	</head>\n
 	\n
 	\n
-	<body onload="myFunction()">\n
+	<body onload="myFunction()", style="background-color:snow;">\n
 		\n
 		<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>\n
 		<!-- ICON NEEDS FONT AWESOME FOR CHEVRON UP ICON -->\n
@@ -124,10 +120,10 @@ with open("/home/venus/Git_repo/Site_Web/index.html", "w") as text_file:
 		<header>\n
 			\n
 			<ul>\n
-  				<li id="head"><a id="alink" href="https://pzim-devdata.github.io/">Accueil</a>&nbsp;&nbsp;&nbsp;</li>\n
+  				<li id="head"><a id="alink" href="https://pzim-devdata.github.io/">Home</a>&nbsp;&nbsp;&nbsp;</li>\n
   				<li id="head"><a id="alink" href="https://github.com/pzim-devdata/Tools-for-Linux">Linux</a>&nbsp;&nbsp;&nbsp;</li>\n
-				<li id="head"><a id="alink" href="https://github.com/pzim-devdata/Skills-and-training-certificates">Compétences</a>&nbsp;&nbsp;&nbsp;</li>\n
-				<li id="head"><a id="alink" href="https://github.com/pzim-devdata/DATA-developer">Projets</a>&nbsp;&nbsp;&nbsp;</li>\n
+				<li id="head"><a id="alink" href="https://github.com/pzim-devdata/Skills-and-training-certificates">Skills</a>&nbsp;&nbsp;&nbsp;</li>\n
+				<li id="head"><a id="alink" href="https://github.com/pzim-devdata/DATA-developer">Projects</a>&nbsp;&nbsp;&nbsp;</li>\n
   				<li id="head"><a id="alink" href="mailto:contact@pzim.fr?Subject=Contact%20from%20Git">Contact</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>\n
 				<li id="right"><a id="alink" href="https://github.com/pzim-devdata"><picture>\n
 												  			<source srcset="\n
@@ -160,7 +156,7 @@ with open("/home/venus/Git_repo/Site_Web/index.html", "w") as text_file:
 			<p id="devant">Welcome to my Github website !</p>\n
 		</div>\n
 		</section>\n
-		<section style="background-color:snow;">\n
+		<section>\n
 			<div id="google_translate_element" style="position: relative; text-align: left; left: 3.5vw; top: 0.5vw;"></div>\n
 
 			<script type="text/javascript">\n
